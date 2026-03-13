@@ -1,0 +1,41 @@
+# ── Large dataset and result archives ────────────────────────
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+*.7z
+*.rar
+
+# ── Video files ───────────────────────────────────────────────
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# ── Model weights ─────────────────────────────────────────────
+*.pt
+*.pth
+*.pkl
+*.h5
+*.hdf5
+*.bin
+*.ckpt
+*.onnx
+
+# ── Empty stub files ──────────────────────────────────────────
+*.xpynb
+
+# ── Jupyter artifacts ─────────────────────────────────────────
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# ── Python cache ──────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
