@@ -4,16 +4,23 @@ A GAN-based approach to removing artifacts from **EEG (Electroencephalography)**
 
 ## Qualitative Results: Before vs. After Denoising
 
+### Power Spectrum — 50Hz Artifact Eliminated
+
 <p align="center">
-  <img src="before_after_denoising.png" alt="Time-Domain Comparison — Clean GT vs Noisy Input vs Denoised Output" width="820"/>
+  <img src="before_after_spectrum.png" alt="Power spectrum: Clean vs 50Hz-contaminated vs Denoised" width="860"/>
 </p>
 
-**Time-Domain Comparison at Epoch 20** — three overlaid EEG signal traces:
-- 🔵 **Clean (GT)**: Ground-truth artifact-free EEG (nearly flat baseline)
-- 🟠 **Noisy Input**: Raw clinical EEG contaminated by muscle and eye artifacts (high-amplitude oscillations)
-- 🟢 **Denoised Output**: ResGAN prediction — artifact patterns suppressed, signal envelope closely tracks clean ground truth
+Three panels — **left**: clean reference signal (flat, band-limited spectrum). **Center**: contaminated input — the massive spike at 50Hz is power-line interference injected into the EEG, towering over all neural frequencies and completely corrupting the measurement. **Right**: ResGAN denoised output — the 50Hz spike is **completely eliminated**, and the spectrum is restored to match the clean reference.
 
-The trained generator successfully isolates the clean neural signal from broadband artifact noise across a 4-second recording window.
+This is the core capability of the model: identifying narrow-band environmental noise and surgically removing it while preserving the underlying neural signal.
+
+### Time-Domain — Large Artifact Spike Removed
+
+<p align="center">
+  <img src="before_after_timedomain.png" alt="Time-domain: Signal with artifact vs clean vs denoised" width="680"/>
+</p>
+
+The orange trace (**Signal with Artefact**) shows a large-amplitude spike at ~1.25 seconds — typical of an eye-blink or muscle burst artifact that can reach amplitudes 2–3× the neural baseline. The green trace (**Denoised signal**) successfully suppresses this spike, bringing the output back to near-zero artifact level.
 
 ---
 
@@ -145,7 +152,9 @@ Denoising_EEG_signal_BCI/
 ├── 1tuar-resgan.ipynb          ← Main ResGAN training notebook
 ├── EEG-DeNoiseGAN.ipynb        ← DeNoiseGAN variant
 ├── tuar-resgan_5epoch.ipynb    ← Quick 5-epoch run
-├── before_after_denoising.png  ← Time-domain Before/After comparison (extracted from report)
+├── before_after_spectrum.png   ← Power spectrum: 50Hz spike eliminated (dramatic comparison)
+├── before_after_timedomain.png ← Time-domain artifact spike removed
+├── before_after_denoising.png  ← Earlier time-domain comparison (supplemental)
 ├── training_curves.png         ← Generated training loss + SNR curves
 ├── overview_TUAR.png           ← TUAR dataset overview with musc/eye/bckg labels
 ├── 20ch.png                    ← 20-channel EEG visualization
