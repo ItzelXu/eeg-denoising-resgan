@@ -47,6 +47,10 @@ This is a real clinical EEG recording from the TUAR corpus, annotated by neurolo
 
 The primary goal of this ResGAN model is to extract the clean, effective EEG signal by identifying and completely removing these physical and environmental noises.
 
+![Data Preprocessing Pipeline](denoise_preprocessing.png)
+
+*Data Preprocessing Pipeline: This diagram illustrates the rigorous preprocessing steps applied to the raw EEG signals before they are fed into the ResGAN model to ensure optimal signal quality.*
+
 ## 20-Channel EEG Visualization
 
 ![20-Channel EEG](20ch.png)
